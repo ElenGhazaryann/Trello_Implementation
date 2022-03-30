@@ -1,0 +1,13 @@
+.boardItem {
+  width: 350px;
+  border: 1px solid red;
+}
+
+.boardItem h4 {
+  margin-left: 20px;
+}
+
+.boardItem button {
+  height: 30px;
+  margin-left: 130px;
+}
