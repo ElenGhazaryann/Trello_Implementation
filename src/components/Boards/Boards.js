@@ -3,30 +3,32 @@ import "./styles.css";
 import { useNavigate } from "react-router-dom";
 import { BoardsContext, DispatchContext } from "./../../App";
 import { ACTION_TYPES } from "../../state/state";
+import boardImg from "./../../assets/boardImg.webp";
 
-function Boards({ title, imgUrl, boardId }) {
-  const dispatch = useContext(DispatchContext);
-  const boards = useContext(BoardsContext);
+function Boards({ title, boardId }) {
+  // const dispatch = useContext(DispatchContext);
+  // const boards = useContext(BoardsContext);
   const navigate = useNavigate();
-
   return (
     <div className="boardItem">
-      <img src={imgUrl} />
+      <img className="boardImg" src={boardImg} />
       <h4>{title}</h4>
       <p>
         This board contains tasks about <b>{title}</b>. You can add tasks,
         delete or change them.
       </p>
-      <button
-        onClick={() => {
-          // console.log(ref.current);
-          navigate("/board-item", {
-            state: { boardTitle: title, board: boards, boardId: boardId },
-          });
-        }}
-      >
-        Open board
-      </button>
+      <div className="openBoardBtn">
+        <button
+          className="openBoardBtn"
+          onClick={() => {
+            navigate("/board-item", {
+              state: { boardTitle: title, boardId: boardId },
+            });
+          }}
+        >
+          Open board
+        </button>
+      </div>
     </div>
   );
 }

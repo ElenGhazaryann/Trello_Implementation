@@ -9,8 +9,8 @@ function Home() {
   const dispatch = useContext(DispatchContext);
   const ref = useRef("");
   return (
-    <div>
-      <form
+    <div className='homeContainer'>
+      <form className="homeForm"
         onSubmit={(e) => {
           e.preventDefault();
           dispatch({
@@ -21,14 +21,14 @@ function Home() {
           ref.current.value = "";
         }}
       >
-        <input
+        <input className="createBoardBtn"
           ref={ref}
           placeholder="Create board"
           onChange={(e) => {
             ref.current.value = e.target.value;
           }}
         />
-        <button>Add board</button>
+        <button className="addBoardBtn">Add board</button>
       </form>
       <div className="boardContainer">
         {boards.map((item, index) => (

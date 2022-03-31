@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const ACTION_TYPES = {
   LOGIN_USER: "LOGIN_USER",
   ADD_BOARD: "ADD_BOARD",
   FILTER_BOARDS_BY_STATUS: "FILTER_BOARDS_BY_STATUS",
+  DELETE_TASK: "DELETE_TASK",
+  ADD_TASK: "ADD_TASK",
+  TOGGLE_MODAL: "TOGGLE_MODAL",
 };
+
+// ACTION_TYPES.TOGGLE_MODAL
 const defaultState = {
   userName: "Elen",
+  isModalOpen: false,
+  modalInfo: { title: "", status: "", description: "", priority: "" },
   boards: [
     {
       boardName: "Learn JS",
@@ -15,22 +22,22 @@ const defaultState = {
         {
           title: "read info",
           id: Math.random(),
-          status: "todo", // ["todo", "doing", "done"],
-          priority: "high", //[("high", "low", "medium")],
+          status: "todo",
+          priority: "high",
           description: "read and do all tasks from mdn",
         },
         {
           title: "read mdn",
           id: Math.random(),
-          status: "todo", // ["todo", "doing", "done"],
-          priority: "low", //[("high", "low", "medium")],
+          status: "todo",
+          priority: "low",
           description: "read and do all tasks from mdn",
         },
         {
           title: "do all tasks",
           id: Math.random(),
-          status: "doing", //["todo", "doing", "done"],
-          priority: "low", // ["high", "low", "medium"],
+          status: "doing",
+          priority: "low",
           description: "do all tasks and write readme ",
         },
       ],
@@ -52,29 +59,55 @@ function reducer(state, action) {
         ],
       };
     }
+    case ACTION_TYPES.DELETE_TASK: {
+      const newBoards = state.boards.map((item) => {
+        if (item.boardId === action.boardId) {
+          return {
+            ...item,
+            tasks: item.tasks.filter((item) => item.id !== action.id),
+          };
+        } else {
+          return item;
+        }
+      });
+      return { ...state, boards: newBoards };
+    }
+    case ACTION_TYPES.ADD_TASK: {
+      const newBoards = state.boards.map((item) => {
+        if (item.boardId === action.boardId) {
+          console.log(action.status);
+          return {
+            ...item,
+            tasks: [
+              ...item.tasks,
+              {
+                title: action.task,
+                id: Math.random(),
+                status: action.status,
+                priority: action.priority,
+                description: "chka",
+              },
+            ],
+          };
+        } else {
+          return item;
+        }
+      });
+      return { ...state, boards: newBoards };
+    }
+    case ACTION_TYPES.TOGGLE_MODAL: {
+      return {
+        ...state,
+        modalInfo: {
+          title: action.title,
+          status: action.status,
+          priority: action.priority,
+          description: action.description,
+        },
+        isModalOpen: !state.isModalOpen,
+      };
+    }
   }
 }
 
 export { reducer, defaultState, ACTION_TYPES };
-
-/*export const reducedStates = (boardTitle, boards) => {
-  return boards
-    .filter((item) => item.boardName === boardTitle)[0]
-    .tasks.reduce(
-      (acc, currentVal) => {
-        if (currentVal.status === "todo") {
-          acc.todo.push(currentVal);
-        } else if (currentVal.status === "doing") {
-          acc.doing.push(currentVal);
-        } else if (currentVal.status === "done") {
-          acc.done.push(currentVal);
-        }
-        return acc;
-      },
-      {
-        todo: [],
-        doing: [],
-        done: [],
-      }
-    );
-}; */

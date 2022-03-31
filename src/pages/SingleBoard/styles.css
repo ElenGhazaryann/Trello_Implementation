@@ -1,5 +1,11 @@
-.allTasksContainer {
+.allColumnsContainer {
   display: flex;
   margin-top: 70px;
   justify-content: space-around;
+  border: 1px solid green;
+}
+
+.columnItem {
+  width: 400px;
+  border: 1px solid blue;
 }

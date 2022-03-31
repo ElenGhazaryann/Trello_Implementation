@@ -6,7 +6,6 @@ import "./styless.css";
 import { useNavigate } from "react-router-dom";
 import { DispatchContext } from "../../App";
 import Logo from "../../components/Logo";
-import Photo1 from "./../../assets/signin1.webp";
 import Photo2 from "./../../assets/signin3.jpg";
 import Photo3 from "./../../assets/signin2.png";
 

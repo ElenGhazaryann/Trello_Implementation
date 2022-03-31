@@ -1,13 +1,28 @@
 .boardItem {
-  width: 350px;
-  border: 1px solid red;
+  padding: 10px;
+  width: 280px;
+  /* border: 1px solid red; */
+  background-color: #ffffff;
+  border-radius: 9px;
+  /* padding: 25px 40px; */
+  box-shadow: rgb(0 0 0 / 40%) 0 0 10px;
 }
 
 .boardItem h4 {
   margin-left: 20px;
 }
+.boardItem p {
+  font-size: 15px;
+}
 
-.boardItem button {
+.openBoardBtn {
+  
   height: 30px;
-  margin-left: 130px;
+  margin: auto;
+  width: 100px
+}
+
+.boardImg {
+  width: 90%;
+  margin-left: 13px;
 }
