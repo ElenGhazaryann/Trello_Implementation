@@ -11,9 +11,9 @@ import Modal from "./components/Modal/Modal";
 export const DispatchContext = React.createContext();
 export const BoardsContext = React.createContext();
 export const StateContext = React.createContext();
+
 function App() {
   const [state, dispatch] = useReducer(reducer, defaultState);
-
   return (
     <div className="App">
       <StateContext.Provider value={state}>
@@ -25,10 +25,10 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="board-item" element={<SingleBoard />} />
             </Routes>
+            {state.isModalOpen && <Modal {...state.modalInfo} />}
           </DispatchContext.Provider>
         </BoardsContext.Provider>
       </StateContext.Provider>
-      {state.isModalOpen && <Modal {...state.modalInfo} />}
     </div>
   );
 }

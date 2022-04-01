@@ -7,34 +7,36 @@ const ACTION_TYPES = {
   DELETE_TASK: "DELETE_TASK",
   ADD_TASK: "ADD_TASK",
   TOGGLE_MODAL: "TOGGLE_MODAL",
+  EDIT_TASK: "EDIT_TASK",
 };
 
-// ACTION_TYPES.TOGGLE_MODAL
+// ACTION_TYPES.EDIT_TASK
 const defaultState = {
   userName: "Elen",
   isModalOpen: false,
-  modalInfo: { title: "", status: "", description: "", priority: "" },
+  // modalInfo: { title: "", status: "", description: "", priority: "" },
+  modalInfo: { task: "", boardId: "" },
   boards: [
     {
       boardName: "Learn JS",
       boardId: Math.random(),
       tasks: [
         {
-          title: "read info",
+          title: "Read info",
           id: Math.random(),
           status: "todo",
           priority: "high",
           description: "read and do all tasks from mdn",
         },
         {
-          title: "read mdn",
+          title: "Read mdn",
           id: Math.random(),
           status: "todo",
           priority: "low",
           description: "read and do all tasks from mdn",
         },
         {
-          title: "do all tasks",
+          title: "Do all tasks",
           id: Math.random(),
           status: "doing",
           priority: "low",
@@ -75,7 +77,6 @@ function reducer(state, action) {
     case ACTION_TYPES.ADD_TASK: {
       const newBoards = state.boards.map((item) => {
         if (item.boardId === action.boardId) {
-          console.log(action.status);
           return {
             ...item,
             tasks: [
@@ -98,14 +99,35 @@ function reducer(state, action) {
     case ACTION_TYPES.TOGGLE_MODAL: {
       return {
         ...state,
-        modalInfo: {
-          title: action.title,
-          status: action.status,
-          priority: action.priority,
-          description: action.description,
-        },
+        modalInfo: { task: action.task, boardId: action.boardId },
         isModalOpen: !state.isModalOpen,
       };
+    }
+    case ACTION_TYPES.EDIT_TASK: {
+      const newBoards = state.boards.map((item) => {
+        if (item.boardId === action.boardId) {
+          item.tasks.map((item) => {
+            if (item.id === action.id) {
+              console.log(item);
+              // return {
+              //   priority: action.priority,
+              //   status: action.status,
+              //   ...item,
+              // };
+              item.priority = action.priority;
+              item.status = action.status;
+              return item;
+            } else {
+              return item;
+            }
+          });
+        } else {
+          return item;
+        }
+        return item;
+      });
+      console.log(newBoards);
+      return { ...state, boards: newBoards };
     }
   }
 }
