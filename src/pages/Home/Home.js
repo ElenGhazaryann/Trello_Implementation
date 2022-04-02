@@ -1,14 +1,14 @@
-import React, { useContext, useRef } from "react";
+import React, { useRef } from "react";
 import Boards from "../../components/Boards";
-import { DispatchContext, BoardsContext } from "../../App";
-import { ACTION_TYPES } from "../../state";
+import { ACTION_TYPES, useCustomContext } from "../../state";
 import { useStyles } from "./styles";
 
 function Home() {
   const styles = useStyles();
-  const boards = useContext(BoardsContext);
-  const dispatch = useContext(DispatchContext);
+  const { state, dispatch } = useCustomContext();
+
   const ref = useRef("");
+
   return (
     <div className={styles.homeContainer}>
       <form
@@ -34,7 +34,7 @@ function Home() {
         <button className={styles.addBoardBtn}>Add board</button>
       </form>
       <div className={styles.boardContainer}>
-        {boards.map((item, index) => (
+        {state.boards.map((item, index) => (
           <Boards key={index} title={item.boardName} boardId={item.boardId} />
         ))}
       </div>

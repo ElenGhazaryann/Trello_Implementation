@@ -1,16 +1,12 @@
-import React, { useContext } from "react";
-// import "./styles.css";
-import { useNavigate } from "react-router-dom";
-import { BoardsContext, DispatchContext } from "./../../App";
-import { ACTION_TYPES } from "../../state";
-import boardImg from "./../../assets/boardImg.webp";
+import React from "react";
 import { useStyles } from "./styles";
+import boardImg from "./../../assets/boardImg.webp";
+import { useNavigate } from "react-router-dom";
 
 function Boards({ title, boardId }) {
   const styles = useStyles();
-  // const dispatch = useContext(DispatchContext);
-  // const boards = useContext(BoardsContext);
   const navigate = useNavigate();
+
   return (
     <div className={styles.boardItem}>
       <img className={styles.boardImg} src={boardImg} />

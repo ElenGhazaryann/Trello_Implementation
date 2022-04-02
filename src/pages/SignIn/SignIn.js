@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+import React from "react";
 import { useStyles } from "./styles";
 import { useNavigate } from "react-router-dom";
-import { DispatchContext } from "../../App";
+import { useCustomContext } from "../../state";
+
 import Logo from "../../components/Logo";
 import Photo2 from "./../../assets/signin3.jpg";
 import Photo3 from "./../../assets/signin2.png";
@@ -11,7 +10,8 @@ import Photo3 from "./../../assets/signin2.png";
 function SignIn({}) {
   const styles = useStyles();
   const navigate = useNavigate();
-  const dispatch = useContext(DispatchContext);
+  // const dispatch = useContext(DispatchContext);
+  const { dispatch } = useCustomContext();
 
   const logIn = () => {
     //todo dispatchov poxancel userName

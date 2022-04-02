@@ -4,6 +4,7 @@ import { useStyles } from "./styles";
 
 function Logo() {
   const styles = useStyles();
+
   return (
     <div className={styles.logoContainer}>
       <img className={styles.trelloLogo} src={logo} />

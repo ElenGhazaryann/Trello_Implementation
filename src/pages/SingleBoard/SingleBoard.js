@@ -1,22 +1,20 @@
-import React, { useContext } from "react";
-import { useLocation } from "react-router-dom";
-// import "./styles.css";
-
+import React from "react";
 import { useStyles } from "./styles";
+import { useLocation } from "react-router-dom";
+import { useCustomContext } from "../../state";
 
 import StatusColumns from "../../components/StatusColumns";
-import { BoardsContext, DispatchContext } from "../../App";
 
 function SingleBoard() {
   const styles = useStyles();
-  const boards = useContext(BoardsContext);
+  const { state } = useCustomContext();
+
   const { boardTitle, boardId } = useLocation().state;
 
-  const board = boards.filter((item) => item.boardId === boardId);
   return (
-    <div className={styles.singleBoardWrapper} >
+    <div className={styles.singleBoardWrapper}>
       <h3 className={styles.boardName}>{boardTitle}</h3>
-      {boards.map((item, index) => {
+      {state.boards.map((item, index) => {
         if (item.boardId === boardId) {
           return (
             <div className={styles.allColumnsContainer} key={index}>

@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
-import { DispatchContext, StateContext, state } from "../../App";
-import { ACTION_TYPES, defaultState } from "../../state";
-import Modal from "../Modal/Modal";
+import React from "react";
 import { useStyles } from "./styles";
+import { ACTION_TYPES, useCustomContext } from "../../state";
+import Modal from "../Modal";
 
 function AddTask({ task, board }) {
   const { title, id, description, status, priority } = task;
   const styles = useStyles();
-  const dispatch = useContext(DispatchContext);
-  // const state = useContext(StateContext);
+  const { state, dispatch } = useCustomContext();
+
   const deleteTask = () => {
     dispatch({
       type: ACTION_TYPES.DELETE_TASK,
@@ -23,12 +22,13 @@ function AddTask({ task, board }) {
       task: task,
       boardId: board.boardId,
     });
-    console.log(defaultState.isModalOpen);
   };
   return (
     <>
       <div className={styles.singleTaskContainer}>
-        <div className={styles.titleName} onClick={() => openModal()}>{title}</div>
+        <div className={styles.titleName} onClick={() => openModal()}>
+          {title}
+        </div>
         <div className={styles.buttonsContainer}>
           <span className={styles.singleBtn1}>{priority}</span>
           <button className={styles.singleBtn1}>{status}</button>
@@ -38,6 +38,7 @@ function AddTask({ task, board }) {
           </button>
         </div>
       </div>
+      {state.isModalOpen && <Modal {...state.modalInfo} />}
     </>
   );
 }

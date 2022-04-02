@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useReducer } from "react";
 
 const ACTION_TYPES = {
   LOGIN_USER: "LOGIN_USER",
@@ -48,7 +48,6 @@ const defaultState = {
 function reducer(state, action) {
   switch (action.type) {
     case ACTION_TYPES.LOGIN_USER: {
-      console.log("i will never work");
     }
     case ACTION_TYPES.ADD_BOARD: {
       return {
@@ -123,4 +122,15 @@ function reducer(state, action) {
   }
 }
 
-export { reducer, defaultState, ACTION_TYPES };
+const Context = React.createContext(defaultState);
+
+const useCustomContext = () => useContext(Context);
+
+function ContextProvider({ children }) {
+  const [state, dispatch] = useReducer(reducer, defaultState);
+  return (
+    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
+  );
+}
+
+export { ACTION_TYPES, ContextProvider, useCustomContext };

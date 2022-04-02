@@ -1,10 +1,7 @@
 import React from "react";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import { useStyles } from "./styles";
-
-// import "./styless.css";
 import mainBck from "../../assets/mainBck.png";
+import Button from "@mui/material/Button";
 
 function Main() {
   const styles = useStyles();

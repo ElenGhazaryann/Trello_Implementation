@@ -1,17 +1,15 @@
-import React, { useContext, useState, useRef } from "react";
-import { DispatchContext } from "../../App";
-import { ACTION_TYPES } from "./../../state";
-import useCloseModal from "./../../hooks/useCloseModal";
+import React, { useState, useRef } from "react";
 import { useStyles } from "./styles";
+import { ACTION_TYPES, useCustomContext } from "./../../state";
+import useCloseModal from "./../../hooks/useCloseModal";
 
-function Modal({ task, boardId }) {
+function Modal({ title, id, description, status, priority, boardId }) {
   const styles = useStyles();
-  const { title, id, description, status, priority } = task;
+  const { dispatch } = useCustomContext();
+
   const ref = useRef(null);
   const [editedPriority, setEditedPriority] = useState();
   const [editedStatus, setEditedStatus] = useState();
-  const dispatch = useContext(DispatchContext);
-  // window.style.background =
 
   useCloseModal(ref, () => dispatch({ type: ACTION_TYPES.TOGGLE_MODAL }));
 

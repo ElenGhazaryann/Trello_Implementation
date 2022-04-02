@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 function useCloseModal(ref, cb = () => null) {
   const handleModal = (e) => {

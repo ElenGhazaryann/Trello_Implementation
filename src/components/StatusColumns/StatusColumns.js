@@ -1,14 +1,14 @@
-import React, { useContext, useRef, useState } from "react";
-import AddTask from "../AddTask/AddTask";
-import { DispatchContext } from "../../App";
-import { ACTION_TYPES } from "../../state";
+import React, { useRef, useState } from "react";
 import { useStyles } from "./styles";
+import AddTask from "../AddTask";
+import { ACTION_TYPES, useCustomContext } from "../../state";
 
 function StatusColumns({ board, columnName, status }) {
   const styles = useStyles();
-  const [selected, setSelected] = useState();
+  const { dispatch } = useCustomContext();
+
   const ref = useRef(null);
-  const dispatch = useContext(DispatchContext);
+  const [selected, setSelected] = useState(null);
 
   const addTask = () => {
     dispatch({
@@ -44,7 +44,7 @@ function StatusColumns({ board, columnName, status }) {
             placeholder="Add new Task"
           />
           <select
-          className={styles.selectBox}
+            className={styles.selectBox}
             defaultValue=""
             value={selected}
             onChange={(e) => setSelected(e.target.value)}
