@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStyles } from "./styles";
 import { ACTION_TYPES, useCustomContext } from "../../state";
 import Modal from "../Modal";
@@ -23,8 +23,9 @@ function AddTask({ task, board }) {
       boardId: board.boardId,
     });
   };
+
   return (
-    <>
+    <div className={styles.red}>
       <div className={styles.singleTaskContainer}>
         <div className={styles.titleName} onClick={() => openModal()}>
           {title}
@@ -38,8 +39,8 @@ function AddTask({ task, board }) {
           </button>
         </div>
       </div>
-      {state.isModalOpen && <Modal {...state.modalInfo} />}
-    </>
+      {/* {state.isModalOpen && <Modal {...task} boardId={board.boardId} />} */}
+      </div>
   );
 }
 

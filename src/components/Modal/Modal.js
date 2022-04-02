@@ -3,7 +3,8 @@ import { useStyles } from "./styles";
 import { ACTION_TYPES, useCustomContext } from "./../../state";
 import useCloseModal from "./../../hooks/useCloseModal";
 
-function Modal({ title, id, description, status, priority, boardId }) {
+function Modal({ task, boardId }) {
+  const { title, id, description, status, priority } = task;
   const styles = useStyles();
   const { dispatch } = useCustomContext();
 
@@ -23,51 +24,51 @@ function Modal({ title, id, description, status, priority, boardId }) {
     });
   };
   return (
-    <div className={styles.modalBackground}>
-      <div ref={ref} className={styles.modalContainer}>
-        <div>
-          Task name - '{title}'<br />
-          Task status - {status}
-          <br />
-          Task priority - {priority}
-        </div>
-        <select
-          className={styles.modalSelect}
-          defaultValue=""
-          value={editedPriority}
-          onChange={(e) => setEditedPriority(e.target.value)}
-        >
-          <option value="" disabled>
-            Change priority
-          </option>
-          <option>low</option>
-          <option>medium</option>
-          <option>high</option>
-        </select>
-        <select
-          className={styles.modalSelect}
-          defaultValue=""
-          value={editedStatus}
-          onChange={(e) => setEditedStatus(e.target.value)}
-        >
-          <option value="" disabled>
-            Change status
-          </option>
-          <option>todo</option>
-          <option>doing</option>
-          <option>done</option>
-        </select>
-        <button
-          className={styles.saveChanges}
-          onClick={() => {
-            editTask();
-            dispatch({ type: ACTION_TYPES.TOGGLE_MODAL });
-          }}
-        >
-          Save changes
-        </button>
+    // <div className={styles.modalBackground}>
+    <div ref={ref} className={styles.modalContainer}>
+      <div>
+        Task name - '{title}'<br />
+        Task status - {status}
+        <br />
+        Task priority - {priority}
       </div>
+      <select
+        className={styles.modalSelect}
+        // defaultValue=""
+        value={editedPriority}
+        onChange={(e) => setEditedPriority(e.target.value)}
+      >
+        <option value="" disabled>
+          Change priority
+        </option>
+        <option>low</option>
+        <option>medium</option>
+        <option>high</option>
+      </select>
+      <select
+        className={styles.modalSelect}
+        // defaultValue=""
+        value={editedStatus}
+        onChange={(e) => setEditedStatus(e.target.value)}
+      >
+        <option value="" disabled>
+          Change status
+        </option>
+        <option>todo</option>
+        <option>doing</option>
+        <option>done</option>
+      </select>
+      <button
+        className={styles.saveChanges}
+        onClick={() => {
+          editTask();
+          dispatch({ type: ACTION_TYPES.TOGGLE_MODAL });
+        }}
+      >
+        Save changes
+      </button>
     </div>
+    // </div>
   );
 }
 

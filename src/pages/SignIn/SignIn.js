@@ -1,7 +1,6 @@
 import React from "react";
 import { useStyles } from "./styles";
 import { useNavigate } from "react-router-dom";
-import { useCustomContext } from "../../state";
 
 import Logo from "../../components/Logo";
 import Photo2 from "./../../assets/signin3.jpg";
@@ -11,10 +10,8 @@ function SignIn({}) {
   const styles = useStyles();
   const navigate = useNavigate();
   // const dispatch = useContext(DispatchContext);
-  const { dispatch } = useCustomContext();
 
   const logIn = () => {
-    //todo dispatchov poxancel userName
     navigate("/home");
   };
   return (

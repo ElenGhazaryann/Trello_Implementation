@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import SingleBoard from "./pages/SingleBoard";
 
 function App() {
+  
   return (
     <div className="App">
       <ContextProvider>
@@ -18,6 +19,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="board-item" element={<SingleBoard />} />
         </Routes>
+        {/* {state.isModalOpen && <Modal {...state.modalInfo} />} */}
       </ContextProvider>
     </div>
   );

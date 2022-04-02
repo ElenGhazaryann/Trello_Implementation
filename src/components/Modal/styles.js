@@ -3,6 +3,7 @@ import { createUseStyles } from "react-jss";
 const useStyles = createUseStyles(
   {
     modalContainer: {
+      
       width: "400px",
       position: "absolute",
       left: "50%",
@@ -23,19 +24,12 @@ const useStyles = createUseStyles(
     saveChanges: {
       width: "120px",
       height: "30px",
-      // width: "220px",
       marginLeft: "5px",
       background: "white",
       borderRadius: " 0.25rem",
       border: "1px solid rgba(0, 0, 0, 0.3)",
       boxShadow: "rgba(0, 0, 0, 0.1) 0 1px 3px 0",
     },
-    // modalBackground: {
-    //   width: "100vw",
-    //   height: "40vh",
-    //   background: "red",
-
-    // },
   },
   { name: "modal" }
 );

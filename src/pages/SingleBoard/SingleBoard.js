@@ -2,7 +2,7 @@ import React from "react";
 import { useStyles } from "./styles";
 import { useLocation } from "react-router-dom";
 import { useCustomContext } from "../../state";
-
+import Modal from "../../components/Modal";
 import StatusColumns from "../../components/StatusColumns";
 
 function SingleBoard() {
@@ -27,6 +27,9 @@ function SingleBoard() {
               <div className={styles.columnItem}>
                 <StatusColumns board={item} columnName="Done" status="done" />
               </div>
+              {state.isModalOpen && (
+                <Modal {...state.modalInfo} />
+              )}
             </div>
           );
         }

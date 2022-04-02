@@ -8,8 +8,7 @@ function StatusColumns({ board, columnName, status }) {
   const { dispatch } = useCustomContext();
 
   const ref = useRef(null);
-  const [selected, setSelected] = useState(null);
-
+  const [selected, setSelected] = useState("");
   const addTask = () => {
     dispatch({
       type: ACTION_TYPES.ADD_TASK,
@@ -45,7 +44,7 @@ function StatusColumns({ board, columnName, status }) {
           />
           <select
             className={styles.selectBox}
-            defaultValue=""
+            // defaultValue=""
             value={selected}
             onChange={(e) => setSelected(e.target.value)}
           >
@@ -59,6 +58,7 @@ function StatusColumns({ board, columnName, status }) {
           <button className={styles.addTaskBtn}>Add task</button>
         </form>
       </div>
+      
     </div>
   );
 }

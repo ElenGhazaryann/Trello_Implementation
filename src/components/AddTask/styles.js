@@ -2,9 +2,11 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles(
   {
+    red: {
+      position: "relative",
+    },
     singleTaskContainer: {
       background: "rgba(181, 178, 203, 0.4)",
-
       display: "flex",
       paddingLeft: "7px",
       paddingRight: "7px",
