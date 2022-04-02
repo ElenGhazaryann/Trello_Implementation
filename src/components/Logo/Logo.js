@@ -1,13 +1,13 @@
 import React from "react";
 import logo from "../../assets/logo.svg";
-
-import "./styles.css";
+import { useStyles } from "./styles";
 
 function Logo() {
+  const styles = useStyles();
   return (
-    <div className="logoContainer">
-      <img className="trelloLogo" src={logo} />
-      <span>Trello</span>
+    <div className={styles.logoContainer}>
+      <img className={styles.trelloLogo} src={logo} />
+      <span className={styles.logoSpan}>Trello</span>
     </div>
   );
 }

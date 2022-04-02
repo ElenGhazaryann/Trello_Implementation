@@ -1,16 +1,18 @@
 import React, { useContext, useRef } from "react";
 import Boards from "../../components/Boards";
 import { DispatchContext, BoardsContext } from "../../App";
-import { ACTION_TYPES } from "../../state/state";
-import "./styles.css";
+import { ACTION_TYPES } from "../../state";
+import { useStyles } from "./styles";
 
 function Home() {
+  const styles = useStyles();
   const boards = useContext(BoardsContext);
   const dispatch = useContext(DispatchContext);
   const ref = useRef("");
   return (
-    <div className='homeContainer'>
-      <form className="homeForm"
+    <div className={styles.homeContainer}>
+      <form
+        className={styles.homeForm}
         onSubmit={(e) => {
           e.preventDefault();
           dispatch({
@@ -21,16 +23,17 @@ function Home() {
           ref.current.value = "";
         }}
       >
-        <input className="createBoardBtn"
+        <input
+          className={styles.createBoardBtn}
           ref={ref}
           placeholder="Create board"
           onChange={(e) => {
             ref.current.value = e.target.value;
           }}
         />
-        <button className="addBoardBtn">Add board</button>
+        <button className={styles.addBoardBtn}>Add board</button>
       </form>
-      <div className="boardContainer">
+      <div className={styles.boardContainer}>
         {boards.map((item, index) => (
           <Boards key={index} title={item.boardName} boardId={item.boardId} />
         ))}

@@ -5,7 +5,7 @@ import SignIn from "./pages/SignIn";
 import Welcome from "./pages/Welcome";
 import Home from "./pages/Home";
 import SingleBoard from "./pages/SingleBoard";
-import { reducer, defaultState } from "./state/state";
+import { reducer, defaultState } from "./state";
 import Modal from "./components/Modal/Modal";
 
 export const DispatchContext = React.createContext();
@@ -14,6 +14,7 @@ export const StateContext = React.createContext();
 
 function App() {
   const [state, dispatch] = useReducer(reducer, defaultState);
+
   return (
     <div className="App">
       <StateContext.Provider value={state}>

@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-
-import "./styless.css";
+import { useStyles } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { DispatchContext } from "../../App";
 import Logo from "../../components/Logo";
@@ -10,6 +9,7 @@ import Photo2 from "./../../assets/signin3.jpg";
 import Photo3 from "./../../assets/signin2.png";
 
 function SignIn({}) {
+  const styles = useStyles();
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
 
@@ -18,33 +18,33 @@ function SignIn({}) {
     navigate("/home");
   };
   return (
-    <div className="wrapper">
-      <img className="img1" src={Photo3} />
+    <div className={styles.wrapper}>
+      <img className={styles.img1} src={Photo3} />
 
       <div>
-        <div className="logoCompContainer">
+        <div className={styles.logoCompContainer}>
           <Logo />
         </div>
-        <form className="loginContainer">
-          <span>Log in to Trello</span>
+        <form className={styles.loginContainer}>
+          <span className={styles.loginSpan}>Log in to Trello</span>
 
           <input
-            className="loginInput"
+            className={styles.loginInput}
             type="text"
             placeholder="Enter your name"
           />
           <input
-            className="loginInput"
+            className={styles.loginInput}
             type="password"
             placeholder="Enter your password"
           />
-          
-          <button onClick={() => logIn()} className="loginButton">
+
+          <button onClick={() => logIn()} className={styles.loginButton}>
             Log In
           </button>
         </form>
       </div>
-      <img className="img2" src={Photo2} />
+      <img className={styles.img2} src={Photo2} />
     </div>
   );
 }
