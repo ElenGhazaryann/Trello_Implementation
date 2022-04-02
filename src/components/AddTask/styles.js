@@ -34,6 +34,7 @@ const useStyles = createUseStyles(
       fontWeight: "600",
       lineHeight: " 1.25",
       margin: "0",
+    
     },
     singleBtn1: {
       width: "58px",

@@ -16,7 +16,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, defaultState);
 
   return (
-    <div className="App">
+    <div className={state.isModalOpen ? "red" : "App"}>
       <StateContext.Provider value={state}>
         <BoardsContext.Provider value={state.boards}>
           <DispatchContext.Provider value={dispatch}>
