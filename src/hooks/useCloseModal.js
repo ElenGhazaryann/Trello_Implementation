@@ -2,7 +2,8 @@ import { useEffect } from "react";
 
 function useCloseModal(ref, cb = () => null) {
   const handleModal = (e) => {
-    if (!ref.current.contains(e.target)) {
+    console.dir(e.target);
+    if (!ref.current.contains(e.target.innertext)) {
       cb()
     }
   };
@@ -11,7 +12,7 @@ function useCloseModal(ref, cb = () => null) {
     if (ref.current) {
       window.addEventListener("click", handleModal);
     }
-    // return () => window.removeEventListener("click", handleModal);
+    return () => window.removeEventListener("click", handleModal);
   }, [ref]);
 }
 
