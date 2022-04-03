@@ -2,8 +2,7 @@ import { useEffect } from "react";
 
 function useCloseModal(ref, cb = () => null) {
   const handleModal = (e) => {
-    console.dir(e.target);
-    if (!ref.current.contains(e.target.innertext)) {
+    if (!ref.current.contains(e.target)) {
       cb()
     }
   };
